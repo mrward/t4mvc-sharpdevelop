@@ -17,18 +17,15 @@ Please use in accordance to the MvcContrib license (http://mvccontrib.codeplex.c
 #>
 <#@ template language="C#" debug="true" hostspecific="true" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="Microsoft.VisualStudio.Shell.Interop.8.0" #>
-<#@ assembly name="EnvDTE" #>
-<#@ assembly name="EnvDTE80" #>
-<#@ assembly name="VSLangProj" #>
+<#@ assembly  name="$(addinpath:ICSharpCode.PackageManagement)PackageManagement.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="Microsoft.VisualStudio.Shell.Interop" #>
-<#@ import namespace="EnvDTE" #>
-<#@ import namespace="EnvDTE80" #>
+<#@ import namespace="ICSharpCode.PackageManagement.EnvDTE" #>
+<#@ import namespace="EnvDTE = ICSharpCode.PackageManagement.EnvDTE" #>
 <#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
 <# // To debug, uncomment the next two lines !! 
 // System.Diagnostics.Debugger.Launch();
@@ -853,7 +850,7 @@ void ProcessControllersRecursive(ProjectItem projectItem, AreaInfo area) {
     }
 
     if (projectItem.FileCodeModel != null) {
-        DateTime controllerLastWriteTime = File.GetLastWriteTime(projectItem.get_FileNames(0));
+        DateTime controllerLastWriteTime = File.GetLastWriteTime(projectItem.FileNames(0));
         foreach (var type in projectItem.FileCodeModel.CodeElements.OfType<CodeClass2>()) {
             ProcessControllerType(type, area, controllerLastWriteTime);
         }
@@ -977,7 +974,7 @@ void ProcessControllerActionMethods(ControllerInfo controllerInfo, CodeClass2 cu
                 continue;
 
             // We only support action methods that return an ActionResult derived type
-            if (!method.Type.CodeType.get_IsDerivedFrom("System.Web.Mvc.ActionResult")) {
+            if (!method.Type.CodeType.IsDerivedFrom("System.Web.Mvc.ActionResult")) {
                 Warning(String.Format("{0} doesn't support {1}.{2} because it doesn't return a supported ActionResult type", T4FileName, type.Name, method.Name));
                 continue;
             }
@@ -1209,7 +1206,7 @@ static bool IsController(CodeClass2 type) {
 }
 
 static string GetVirtualPath(ProjectItem item) {
-    string fileFullPath = item.get_FileNames(0);
+    string fileFullPath = item.FileNames(0);
     if (!fileFullPath.StartsWith(AppRoot, StringComparison.OrdinalIgnoreCase))
         throw new Exception(string.Format("File {0} is not under app root {1}. Please report issue.", fileFullPath, AppRoot));
 
@@ -1775,9 +1772,9 @@ class Manager {
         private static void ProjectSync(EnvDTE.ProjectItem templateProjectItem, IEnumerable<String> keepFileNames) {
             var keepFileNameSet = new HashSet<String>(keepFileNames);
             var projectFiles = new Dictionary<String, EnvDTE.ProjectItem>();
-            var originalFilePrefix = Path.GetFileNameWithoutExtension(templateProjectItem.get_FileNames(0)) + ".";
+            var originalFilePrefix = Path.GetFileNameWithoutExtension(templateProjectItem.FileNames(0)) + ".";
             foreach (EnvDTE.ProjectItem projectItem in templateProjectItem.ProjectItems)
-                projectFiles.Add(projectItem.get_FileNames(0), projectItem);
+                projectFiles.Add(projectItem.FileNames(0), projectItem);
 
             // Remove unused items from the project
             foreach (var pair in projectFiles)
