@@ -1,16 +1,18 @@
 <?xml version="1.0"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <id>T4MVC</id>
+    <id>T4MVC.SharpDevelop</id>
     <version>2.10.1</version>
     <authors>David Ebbo</authors>
+    <owners>SharpDevelop</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>T4MVC is a T4 template that generates strongly typed helpers for ASP.NET MVC.</description>
     <summary>T4MVC is a T4 template that generates strongly typed helpers for ASP.NET MVC.</summary>
     <language>en-US</language>
     <licenseUrl>http://mvccontrib.codeplex.com/license</licenseUrl>
     <projectUrl>http://t4mvc.codeplex.com/</projectUrl>
-    <tags>t4 mvc t4mvc</tags>
+    <iconUrl>http://community.sharpdevelop.net/blogs/mattward/SharpDevelop.png</iconUrl>
+    <tags>t4 mvc t4mvc SharpDevelop</tags>
   </metadata>
   <files>
     <file src="T4MVC.tt" target="Content" />
