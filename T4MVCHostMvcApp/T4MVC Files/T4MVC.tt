@@ -17,15 +17,15 @@ Please use in accordance to the MvcContrib license (http://mvccontrib.codeplex.c
 #>
 <#@ template language="C#" debug="true" hostspecific="true" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly  name="$(addinpath:ICSharpCode.PackageManagement)PackageManagement.dll" #>
+<#@ assembly name="$(addinpath:ICSharpCode.PackageManagement)PackageManagement.dll" #>
+<#@ assembly name="SharpDevelop.EnvDTE.dll" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="Microsoft.VisualStudio.Shell.Interop" #>
-<#@ import namespace="ICSharpCode.PackageManagement.EnvDTE" #>
-<#@ import namespace="EnvDTE = ICSharpCode.PackageManagement.EnvDTE" #>
+<#@ import namespace="EnvDTE" #>
 <#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
 <# // To debug, uncomment the next two lines !! 
 // System.Diagnostics.Debugger.Launch();
