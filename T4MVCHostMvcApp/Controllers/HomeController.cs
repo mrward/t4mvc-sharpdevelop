@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using T4MVCHostMvcApp.Misc;
 
 namespace T4MVCHostMvcApp.Controllers {
     [HandleError]
     public partial class HomeController : Controller {
+        [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Scope = "member", Target = "T4MVCHostMvcApp.Controllers.HomeController.#.cctor()")]
         static HomeController() { }
 
         public virtual ActionResult Index() {
@@ -57,22 +56,27 @@ namespace T4MVCHostMvcApp.Controllers {
             return null;
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "strings")]
         public virtual ActionResult ActionWithArrayParam(string[] someStrings) {
             return new EmptyResult();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "n"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
         public virtual ActionResult ActionWithAllOptionalParams(string someString = "Hello", int n = 5) {
             return new EmptyResult();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "n"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
         public virtual ActionResult ActionWithSomeOptionalParams(string someString, int n = 5) {
             return new EmptyResult();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
         public virtual ActionResult ActionWithGenericParam<T>(string someString) {
             return new EmptyResult();
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void GetSomethingAsync() {
         }
 
@@ -81,11 +85,13 @@ namespace T4MVCHostMvcApp.Controllers {
             return new JsonResult();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1041:ProvideObsoleteAttributeMessage")]
         [Obsolete]
         public virtual ActionResult SomeObsoleteAction() {
             return new EmptyResult();
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Param"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "event")]
         public virtual ActionResult ActionWithParamUsingAtSyntax(int @event) {
             return new EmptyResult();
         }
@@ -95,14 +101,50 @@ namespace T4MVCHostMvcApp.Controllers {
             return new EmptyResult();
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
         [RequireHttps]
         public virtual ActionResult ActionThatRequiresHttps(string someString)
         {
             return new EmptyResult();
         }
+
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params"), SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
+        public virtual ActionResult OverloadedActionWithDifferentParams(string someString)
+        {
+            return new EmptyResult();
+        }
+
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Params")]
+        public virtual ActionResult OverloadedActionWithDifferentParams(int someNumber)
+        {
+            return new EmptyResult();
+        }
+
+        public virtual SomeGenericResult<string> ActionReturningGenericResultString()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual SomeGenericResult<int> ActionReturningGenericResultInt()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SomeGenericResult<T> : FileResult
+    {
+        public SomeGenericResult(string contentType): base(contentType)
+        {
+
+        }
+        protected override void WriteFile(System.Web.HttpResponseBase response)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     sealed class DummyAttribute : Attribute {
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "actionName")]
         public DummyAttribute(string actionName) {
         }
     }

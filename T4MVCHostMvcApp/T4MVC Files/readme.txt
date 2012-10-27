@@ -47,13 +47,31 @@ KNOWN ISSUES:
 - It will not locate controllers that live in a different project or assembly
 - Compile error when folder under Content contains subfolder with same name as itself (http://blogs.msdn.com/davidebb/archive/2010/01/04/t4mvc-2-6-10-fluent-route-value-api-shorter-way-to-refer-to-action-and-more.aspx#9952727)
 
-TODO:
-- Support object parameters http://stackoverflow.com/questions/2381455/strongly-typed-t4mvc-action-actionlink
-- Add static file support for each area (from Jeremy Brayton)
-- Support favicon.ico in the Links
-- Support controllers in different project (http://forums.asp.net/t/1500812.aspx)
-
 HISTORY:
+
+!!! 2.13.0 (10-24-2012):
+* Move settings to T4MVC.tt.settings.xml XML file instead of tt file
+* Make simple view names available alongside full names, e.g. MVC.Home.Views.SomeView vs MVC.Home.Views.ViewNames.SomeView
+
+!!! 2.12.0 (10-16-2012):
+* Add support for static files in nested folders  [url:http://t4mvc.codeplex.com/workitem/6]
+* Add MVC 4 bundle starter classes [url:https://t4mvc.codeplex.com/discussions/399205]
+
+!!! 2.11.2 (10-11-2012):
+* Removed optional params in ActionLink to support expression trees [url:http://t4mvc.codeplex.com/workitem/4]
+* Change brace style of generated code to Allman
+
+!!! 2.11.1 (10-10-2012):
+* Ignore methods that return generic types [url:http://mvccontrib.codeplex.com/workitem/7178]
+
+!!! 2.11.0 (10-09-2012):
+* Corrects the ActionParameters class for overloaded actions to list all parameters and not just the parameters from the first action found.
+
+!!! 2.10.4 (10-05-2012):
+* Added attributes so it builds clean under Code Analysis [url:http://t4mvc.codeplex.com/workitem/10]
+
+!!! 2.10.3 (09-30-2012):
+* Fix crash when querystring contains a null key [url:http://t4mvc.codeplex.com/discussions/396916]
 
 !!! 2.10.2 (09-17-2012):
 * Fix UnbindModel to avoid failing on duplicate entries [url:http://t4mvc.codeplex.com/discussions/394529]

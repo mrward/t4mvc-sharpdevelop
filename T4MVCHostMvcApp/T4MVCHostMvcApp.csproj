@@ -38,7 +38,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\t4mvc.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,7 +49,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\t4mvc.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -89,17 +93,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ContentStatic\TextFiles\readme.txt" />
     <Compile Include="Controllers\ControllerWithoutSuffix.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModelUnbinderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="SomePortableArea\Controllers\HomeController.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
     <Content Include="Areas\Home\Views\Home\EditorTemplates\SomeAreaEditorTemplate.ascx" />
     <Content Include="Content\StyleSheet.min.css" />
     <Content Include="Content\SomeRandomName\SomeRandomName\SomeRandomName.txt" />
@@ -107,6 +117,7 @@
     <Content Include="Global.asax" />
     <Content Include="SomePortableArea\Views\Home\SomeHomeView.txt" />
     <Content Include="T4MVC Files\readme.txt" />
+    <None Include="T4MVC Files\T4MVC.tt.settings.xml" />
     <Content Include="Views\Home\DisplayTemplates\SomeDisplayTemplate.ascx" />
     <Content Include="Views\Home\DuplicateControl.ascx" />
     <Content Include="Views\Home\EditorTemplates\SomeEditorTemplate.ascx" />
@@ -226,7 +237,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4View.tt</DependentUpon>
     </Compile>
-    <None Include="T4MVC Files\T4MVC.tt.settings.t4" />
+    <None Include="T4MVC Files\T4MVC.tt.hooks.t4" />
     <None Include="Views\Home\QqQ.txt2" />
     <None Include="Views\Home\Qqq.txt3" />
     <None Include="Views\Home\Sub Home\T4View.tt">
